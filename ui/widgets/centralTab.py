@@ -1,6 +1,7 @@
-from PySide6.QtWidgets import QTabWidget
+from PySide6.QtWidgets import QTabWidget, QWidget
 
 
+from ui.widgets.mainHBox import MainHBox
 from ui.widgets.itemsTable import ItemsTable
 
 class CentralTab(QTabWidget):
@@ -10,7 +11,10 @@ class CentralTab(QTabWidget):
         self.setMovable(False)  # Allow tabs to be moved
         self.setDocumentMode(True)  # Use document mode for a cleaner look
 
-        self.addTab(ItemsTable(self), "Ver Inventario")
+        self.firstTab = QWidget()
+        self.mainHBoxWidget = MainHBox(self.firstTab)
+
+        self.addTab(self.firstTab, "Ver Inventario")
         self.addTab(ItemsTable(self), "Añadir Items")
         self.addTab(ItemsTable(self), "Exportar Inventario")
         # self.addTab(None, "Añadir Items")
